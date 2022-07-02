@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object 1 class</title>
+</head>
+<body>
+<script>
+  let apartment = {}
+
+  apartment.name = "2 rooms apartment"
+  apartment.description = "I accept couples, girls, guys. Allowed with animals. Noise is prohibited after 21:00."
+
+  apartment.rooms = []
+    apartment.rooms[0] = {type: "livingroom"}
+    apartment.rooms[1] = {type: "bathroom"}
+    apartment.rooms[2] = {type: "bedroom"}
+    apartment.rooms[3] = {type: "kitchen"}
+
+  let room1 = {}
+  room1.livingroom = "Main room for all family"
+      let sofa = { size: 2, amount: 2, color:'grey'}
+      let table = { size: 1, amount: 1}
+      let fireplace = { size: 1.5, amount: 1}
+      let carpet = {size: '3*3', amount: 1, color:'red'}
+      let lamp = {size: 0.3, amount: 4}
+      let chair = {size: 'small', amount: 6}
+      let closet = {size: 2, amount: 2}
+      let door = {size: 2, amount: 2}
+      let flowers = {color: 'white, blue, pink', amount: 9}
+      let mirror = {color: 'grey', size: 'medium', amount: 2}
+  room1.thingsInLiv=[mirror,flowers,sofa,table,fireplace,carpet,lamp,chair,closet,door]
+  console.log(room1)
+
+  let room2 = {}
+  room2.kitchen = "Room for cooking"
+  let sofaK = { size: 1.5, amount: 1, color:'grey'}
+  let tableK = { size: 1, amount: 1}
+  let plates = { size: 'small', amount: 15, color:'white'}
+  let caps = {size: 'small', amount: 15, color:'white'}
+  let lampK = {size: 0.3, amount: 4}
+  let chairK = {size: 'small', amount: 4}
+  let kitchenCabinet = {size: 'medium', amount: 3, color: 'white'}
+  let doorK = {size: 2, amount: 1, color: 'grey'}
+  let flowersK = {color: 'white, blue, pink', amount: 5}
+  room2.thingsInKit=[flowersK,sofaK,tableK,plates,caps,lampK,chairK,kitchenCabinet,doorK]
+  console.log(room2)
+
+  let room3 = {}
+  room3.bathroom = "Private room"
+      let shampoo = { size: "medium", amount: 2, for: 'woman'}
+      let shower = { amount: 1}
+      let carpetB = { size: 'small', amount: 1, color:'blue'}
+      let mirrorB = {size: 'small', amount: 1, color:'white'}
+  room3.thingsInBath=[shampoo,shower,carpetB,mirrorB]
+  console.log(room3)
+
+  let room4 = {}
+  room4.bedroom = "Room for relax"
+      let bed = { size: "large", amount: 1, color: 'white'}
+      let badsideTable = { amount: 2, size: 'small'}
+      let carpetBed = { size: 'medium', amount: 2, color:'grey'}
+      let mirrorBed = {size: 'small', amount: 2, color:'white'}
+      let closetBed = {size: 2, amount: 2}
+  room4.thingsInBedr=[carpetBed,mirrorBed,closetBed,bed,badsideTable]
+  console.log(room4)
+
+</script>
+</body>
+</html>
