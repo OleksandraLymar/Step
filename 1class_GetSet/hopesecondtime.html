@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="mainUL">
+    <li>1</li>
+    <li >2</li>
+    <li>3</li>
+    <li id="startElement">4</li>
+    <li >5</li>
+    <li>6</li>
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    let ul =document.getElementById('mainUL')
+    //добавили элемент к всему списку
+
+    //create new element 1v
+    let newLi=document.createElement('li')
+    newLi.innerText='new JS'
+    ul.appendChild(newLi)
+
+    //create new element 2v
+    let ulJq=$('mainUL')
+    let newLiJq = $('<li>new jQuery</li>') //create new element
+    ulJq.append(newLiJq)
+    //добавления елемента 2v
+    newLiJq.appendTo(ulJq)//ребенок иди к родителю
+    // ulJq.append('<li>new jQuery</li>')
+
+
+
+    //обращение к елементам следующий\предыдущий и выделяем цветом
+    let elJq = $('#startElement')
+    //JQ
+    elJq.prev().next().css('background','yellow')
+    elJq.prev(2).css('background','yellow')
+    elJq.prev().css('background','yellow')
+    elJq.next().css('background','yellow')
+
+    let elements =$('li:even')
+    elements.css('background','yellow')
+
+//JavaScript
+    let elJs = document.getElementById('startElement')
+    elJs.nextElementSibling.style.border = '1px dotted red'
+
+
+</script>
+</body>
+</html>

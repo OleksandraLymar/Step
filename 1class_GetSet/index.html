@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GetSet</title>
+</head>
+<body>
+<script>
+    class Student {
+        id = 2010703
+        constructor(firstName,secondName) {
+            this.firstName = firstName
+            this.secondName = secondName
+        }
+        get fullName(){
+            if(!this.firstName)throw("No first name")
+            if(!this.secondName)throw("No second name")
+            return this.firstName + " " + this.secondName
+        }
+        get group(){
+            return this._group
+        }
+        set group(newGroup){
+            if(newGroup.length<3){
+                throw ("Length of group is too small :( ")
+            }else {
+                this._group = newGroup
+            }
+        }
+    }
+    let alex = new Student("Alex", "Lymar")
+    alex.group="207"
+
+    console.log("alex.fullName -> " + alex.fullName)
+    console.log("alex.id -> " + alex.id)
+    console.log("alex.group -> " + alex.group)
+    console.log("alex._group -> " + alex._group)
+</script>
+</body>
+</html>

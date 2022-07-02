@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btnClickMe">Click me</button>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    let btnJs = document.getElementById('btnClickMe')
+    let btnJq = $('#btnClickMe')
+
+    console.log(btnJs)
+    btnJs.style.border='1px solid grey' //прямое обращение к атрибутам и стилям - работает быстро
+
+    console.log(btnJq)
+    //btnJq.style.background='green' //отсутствует
+    btnJq.css('background','green') //обращение через посредника
+    $("li").css("border","1px solid red")//выделяет все лишки
+    console.log($("li"))
+</script>
+</body>
+</html>

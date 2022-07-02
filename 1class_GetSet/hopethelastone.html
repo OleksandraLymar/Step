@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQ</title>
+</head>
+<style>
+    *:focus{
+        outline: none;
+    }
+    .focusedBack {
+        background: #FFE4B5;
+    }
+    .focusedBorder {
+        border: 2px dotted #6B8E23;
+    }
+    #mover{
+        margin-left: 45%;
+        position: absolute;
+        background:#FFEFD5;
+        border: 1px solid #FFE4B5;
+        width: 193px;
+        height: 51px;
+        float: left
+    }
+</style>
+<body>
+
+
+<div id="mover"></div>
+
+<form id="form">
+    <input name="email" type="text" placeholder="Email">
+    <input name="password"type="password"placeholder="Password">
+</form>
+<br>
+<table border="1">
+    <tr><td>Theme of the class</td><td>jQ</td></tr>
+    <tr><td>Student</td><td>Oleksandra</td></tr>
+    <tr><td>Age</td><td>19</td></tr>
+</table>
+<br>
+<div>
+    <input type="checkbox" name="a">
+    <span>Java</span>
+</div>
+<div>
+    <input type="checkbox" name="b" checked="checked">
+    <span>JS</span>
+</div>
+<div>
+    <input type="checkbox" name="c" checked="checked">
+    <span>C#</span>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+   //$("input[name='email']").css('border','1px solid blue')
+   //$("input[name='password']").css('border','1px solid red')
+
+   //при фокусе изменяется цвет заднего фона и рамки
+   $( "#form" ).delegate( "*", "focus blur", function() {
+       let elem = $( this );
+       setTimeout(function() {
+           elem.toggleClass( "focusedBack", elem.is( ":focus" ) );
+       }, 0 );
+       setTimeout(function() {
+           elem.toggleClass( "focusedBorder", elem.is( ":focus" ) );
+       }, 0 );
+   });
+
+   //Изменение css таблицы
+   $( "td:even" ).css( "backgroundColor", "#FFE4B5" );
+   $( "td:odd" ).css( "backgroundColor", "#6B8E23" );
+   //анимация прямоугольника
+   function animateIt() {
+       $( "#mover" ).slideToggle( "slow", animateIt );
+   }
+
+   //чекбоксы
+   //те которые не активны
+   $( "input:not(:checked) + span" ).css( "background-color", "PeachPuff" );
+   //те которые активны
+   $( "input").attr( "disabled", "disabled" );
+   animateIt();
+
+</script>
+</body>
+</html>
