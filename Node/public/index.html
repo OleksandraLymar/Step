@@ -1,0 +1,24 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <h1>Apartment</h1>
+  <p>List of things</p>
+<script>
+  fetch('/api/products')
+  .then(res=>res.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(err=>{
+    console.log("Error!")
+    console.log(err)
+  })
+</script>
+</body>
+
+</html>
