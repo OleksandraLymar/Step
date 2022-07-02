@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Thames';
+  background: #8A2BE2;
+}
+br{
+  color:#FFFF00;
+  text-shadow: 1px 2px 6px #FFFF00;
+}
+h1 {
+  font-size: 60px;
+  color:LimeGreen;
+  text-shadow: 1px 2px 6px #FFFF00;
+  font-family: 'font';
+  text-align: center;
+  margin: 20px 0;
+  padding-bottom: 10px;
+}
+#posts {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 10px;
+  text-align: center;
+  width: 80vw;
+  margin: 20px auto;
+}
+.post {
+  background: #fff;
+  box-shadow: rgb(255 255 0) 2px -2px 11px;
+}
+.post img {
+  width: 100%;
+}
+.post h4 {
+  margin: 10px;
+}
+.post p {
+  padding: 20px;
+}
+
+@font-face {
+  font-family: "font";
+  src: url("font.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
