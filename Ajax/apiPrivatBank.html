@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //не работает из-за политики конф.
+    fetch('https://api.privatbank.ua/p24api/pboffice?json&city=Днепропетровск&address=Титова')
+    .then(response=>{
+        return response.json()
+    })
+    .then(pbOffices=>{
+        console.log(pbOffices)
+    })
+        //ловим ошибку
+    .catch(err=>console.log(err))
+</script>
+</body>
+</html>
