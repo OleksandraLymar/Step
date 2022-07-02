@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style>
+        .select{
+            margin-left: 44%;
+        }
+        .logo{
+            margin-left: 46%;
+            width: 104px;
+            height: 53px;
+        }
+        #cars{
+            display: block;
+            overflow: hidden;
+            width: 1075px;
+            height: 444px;
+        }
+        .fixed{ background-image: url("img/models/white-car.jpg");}
+        .white-car{background-image: url("img/models/white-car.jpg");}
+        .grey-car{background-image: url("img/models/grey-car.jpg");}
+        .silver-car{background-image: url("img/models/silver-car.jpg");}
+        .blue-car{background-image: url("img/models/black-car.jpg");}
+
+        #carColorsUl li {margin-top: 10px;display: flex; width: 50px; height: 50px; border-radius: 50%; background-position: center center; background-repeat: no-repeat; position: relative; top:-353px; }
+    </style>
+</head>
+<body>
+<img class="logo"src="img/Toyota-Logo-2020-article169Gallery-3992bf78-1708214.png">
+<div id="cars" class="fixed"></div>
+<div class="select">
+    <select id="selectCarsByClass"></select>
+    <select id="selectCarsByObj"></select>
+</div>
+<div id="carZone">
+    <ul id="carColorsUl"></ul>
+</div>
+<!--подключение функции генератора id-->
+<script src="guid.js"></script>
+<script>
+    //создание объекта цветов
+    let arrColors = [
+        {name:"Белый",  imgModel: "white-car.jpg", imgUrl: "white.jpg", id: generateUUID()},
+        {name:"Grey",  imgModel: "grey-car.jpg", imgUrl: "grey.jpg", id: generateUUID()},
+        {name:"Silver",  imgModel: "silver-car.jpg", imgUrl: "silver.jpg", id: generateUUID()},
+        {name:"Blue",  imgModel: "black-car.jpg", imgUrl: "blue.jpg", id: generateUUID()}
+    ]
+    //функция подбора цвета под машину
+    function renderColorsLi(){
+        //привязывание элемента
+        let ul = document.getElementById("carColorsUl")
+        arrColors.map( color => {
+            //создание элемента
+            let li = document.createElement("li")
+            //считывание с li информацию и сравнение с цветом айди
+            li.dataset.id = color.id
+            //считывание с li информацию о imgModel и сравнение с color.imgModel
+            li.dataset.imgModel = color.imgModel
+            //присваевание заднего фона = ссылка на папку + цвет с объекта
+            li.style.backgroundImage = "url('img/colors/" + color.imgUrl+"')"
+            //функция при нажатии на кнопку
+            li.onclick = (ev)=> {
+                //создание элемента
+                let img = document.createElement("img")
+                img.src = 'img/models/' + ev.target.dataset.imgModel
+                let divImg = document.getElementById("cars")
+                divImg.innerHTML =''
+                divImg.appendChild(img)
+
+            }
+            ul.appendChild(li)
+        })
+    }
+
+    renderColorsLi()
+
+
+    //коллекция команд - где каждая команда по названию класса
+    let arrTypeByClass = ['fixed', 'white-car', 'grey-car', 'silver-car', 'blue-car']
+    //постоение выпадающего списка
+    function buildSelectByClass() {
+        let s = document.getElementById("selectCarsByClass")
+        for(let i = 0; i<arrTypeByClass.length;i++){
+            let o = document.createElement("option")
+            o.value=arrTypeByClass[i]
+            o.innerText=arrTypeByClass[i]
+            s.appendChild(o)
+        }
+    }
+    buildSelectByClass()
+
+    //воздействие на состояние обьекта снаружи
+    document.getElementById("selectCarsByClass").onchange = function () {
+        cars.element.className = document.getElementById("selectCarsByClass").value
+    }
+
+    let arrCommandsByObj = [
+        {id: 0, className: 'fixed', names: ['fixed','white car'], id: generateUUID()},
+        {id: 1, className: 'white-car', displayName:'White car',names: [{code: 'en', name: 'White car'}, {code: 'ru', name: 'Белая машина'}], id: generateUUID()},
+        {id: 2, className: 'silver-car', displayName:'Silver car',names: [{code: 'en', name: 'Silver car'}, {code: 'ru', name: 'Серебряная машина'}], id: generateUUID()},
+        {id: 3, className: 'grey-car', displayName:'Grey car',names: [{code: 'en', name: 'Grey car'}, {code: 'ru', name: 'Серая машина'}], id: generateUUID()},
+        {id: 4, className: 'blue-car', displayName:'Blue car',names: [{code: 'en', name: 'Blue car'}, {code: 'ru', name: 'Синяя машина'}], id: generateUUID()}
+    ]
+    let mySelect = document.getElementById("selectCarsByObj")
+        function buildCommandsByObj() {
+            arrCommandsByObj.map( cmd => {
+                let o = document.createElement("option")
+                o.value = cmd.className
+                o.innerText = cmd.displayName
+                mySelect.appendChild(o)
+            })
+        }
+    buildCommandsByObj()
+    document.getElementById("selectCarsByObj").onchange = function () {
+        cars.element.className = document.getElementById("selectCarsByObj").value
+    }
+    //создание обьекта
+    let cars  = {}
+    //вызов функции генератора случайного id
+    cars.id = generateUUID()
+    //задаем имя машине
+    cars.name = 'Toyota'
+    cars.year = 2022
+    cars.whatIs = 'Car'
+    //указание, внутри какого тега будет выводиться данный обьект
+    cars.element = document.getElementById('cars')
+    //описание процесса проявления моего обьекта
+    cars.render = function () {
+        // cars.element.innerText = cars.name
+        let ul = document.createElement('ul')
+        let liColor = document.createElement('li')
+        liColor.innerHTML = `<label>Object: </label><span>${cars.whatIs}</span>`
+        ul.appendChild(liColor)
+        let liName = document.createElement('li')
+        liName.innerHTML = `<label>Name: </label><span>${cars.name}</span>`
+        ul.appendChild(liName)
+        let liYear = document.createElement('li')
+        liYear.innerHTML = `<label>Year of issue: </label><span>${cars.year}</span>`
+        ul.appendChild(liYear)
+        cars.element.appendChild(ul)
+    }
+
+
+
+    //вывод содержимого в обьекте в консоль
+    console.log(cars)
+    cars.render()
+</script>
+</body>
+</html>
