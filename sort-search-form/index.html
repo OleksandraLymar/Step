@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+
+        li{
+            list-style-type:none;
+            margin-left: -40px;
+        }
+        #lstSearch {
+            border: 1px solid #FFFACD;
+            border-radius: 5px;
+            background: #FFFACD;
+            width: 200px
+        }
+        .btnDel { cursor: pointer; margin-left: 9px}
+        .inEdit {font-style: italic;}
+    </style>
+</head>
+<body>
+
+
+<main>
+    <ul id="lstContact"></ul>
+    <input type="text" id="txtContact">
+    <input type="button" value="+" id="btnAdd">
+    <input type="button" value="Sort" id="btnSort"><br>
+    <span>Поиск:</span><br>
+    <input type="text" id="strSearch"><br>
+    <span>Результат поиска:</span><br>
+    <ul id="lstSearch"></ul>
+
+</main>
+
+
+<script>
+    // Создание массива
+    let contacts = []
+    let lstContact = document.getElementById("lstContact")
+    let inContact = document.getElementById("txtContact")
+    let strSearch = document.getElementById("strSearch")
+    let lstSearch = document.getElementById("lstSearch")
+
+    //Создание елементов массива
+    contacts[0] ="Anna"
+    contacts[1] ="Ben"
+    contacts[2] ="Fillip"
+    contacts[3] ="Katerina"
+
+    //метод, который выполняет функцию поиска
+    document.getElementById("strSearch").oninput = function (event) {
+        //если строка пустая
+        if(strSearch.value.length === 0 ){
+            lstSearch.innerHTML = 'The string is empty!'
+            return
+        }
+        //присваевание значения strSearch к strS
+        let strS = strSearch.value
+        //вывод в консоль значения, которое храниться в strS
+        console.log(strS)
+        //фильтр, который возвращает значение которое находится в списке
+        let arrResult = contacts.filter( contact => {
+            return contact.includes(strS)
+        })
+        //вывод в консоль результата фильтрации
+        console.log(arrResult)
+        lstSearch.innerHTML = ''
+        //функция создания списка
+        arrResult.map(contact => {
+            let li = document.createElement("li")
+            let span = document.createElement("span")
+            span.innerText = contact
+            li.appendChild(span)
+            lstSearch.appendChild(li)
+        })
+    }
+    //Функция сортировки
+    function renderContactList() {
+        console.log(contacts)
+        lstContact.innerHTML = ' '
+        let i = 0
+        contacts.map(contact => {
+            //создание элементов
+            let li = document.createElement("li")
+            let input = document.createElement("input")
+            //значение, которое в input присваевается contact
+            input.value = contact
+            input.className = 'inShow'
+            input.dataset.elNumber = i
+            //только для чтения
+            input.readOnly = true
+            input.ondblclick = function (event) {
+                //можно редактировать
+                event.target.className = 'inEdit'
+                event.target.readOnly = false
+            }
+            input.onchange = function (event) {
+                contacts[event.target.dataset.elNumber] = event.target.value
+                renderContactList()
+            }
+            input.onblur = function (event) {
+                event.target.className = 'inShow'
+            }
+            li.appendChild(input)
+
+            let btnDel = document.createElement("span")
+            btnDel.innerText = '-'
+            btnDel.className = 'btnDel'
+            btnDel.dataset.elNumber = i++
+            btnDel.onclick = function (event) {
+                contacts.splice(parseInt(event.target.dataset.elNumber), 1)
+                renderContactList()
+            }
+            li.appendChild(btnDel)
+
+            lstContact.appendChild(li)
+        })
+    }
+    //метод добавления еще одного елемента
+    document.getElementById("btnAdd").onclick = function () {
+        //если поле пустое
+        if(inContact.value.length === 0) {
+            inContact.style.border = '1px solid blue'
+            return
+        }
+
+        contacts.push(inContact.value)
+        renderContactList()
+        inContact.value = ''
+    }
+    //метод сортировки по нажатию на кнопку Sort
+    document.getElementById("btnSort").onclick = function () {
+        contacts.sort(
+            function (left,right) {
+                if (left > right) {
+                    return -1;
+                }
+                if (left < right) {
+                    return 1;
+                }
+                return 0;
+            }
+        )
+        //вызов функции
+        renderContactList()
+    }
+    //вызов функции
+    renderContactList()
+</script>
+</body>
+</html>
