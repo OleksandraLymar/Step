@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/344/google-contacts.png" type="image/x-icon">
+</head>
+<body>
+<div>
+    <input id="txtKindOfNumber" type="text" class="result" placeholder="Тип номера">
+    <span> : </span>
+    <input id="txtNumber" type="text" class="result" placeholder="Введите номер" onKeyPress="num()">
+    <input id="btnPush" type="button" value="push">
+    <input id="btnUnShift" type="button" value="unshift">
+    <input id="btnPop" type="button" value="pop">
+    <input id="btnShift" type="button" value="shift">
+</div>
+<main>
+    <ul id="lstContact" >
+
+    </ul>
+</main>
+<script src="js.js"></script>
+</body>
+</html>
